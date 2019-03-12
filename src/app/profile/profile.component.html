@@ -1,0 +1,70 @@
+<h1>Reactive Form</h1>
+<form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
+  <label>
+    First Name:</label>
+  <input type="text" formControlName="FirstName" placeholder="Enter firstname">
+  <div *ngIf="formdata.FirstName.invalid && submit" class="alert alert-danger">
+    <div *ngIf=formdata.FirstName.errors.required>
+      FristName is required.
+    </div>
+  </div>
+  <label>
+    Last Name:</label>
+  <input type="text" formControlName="LastName" placeholder="Enter lastname">
+  <div *ngIf="formdata.LastName.invalid && submit" class="alert alert-danger">
+    <div *ngIf=formdata.LastName.errors.required>
+      LastName is required.
+    </div>
+  </div>
+  <label>
+    Email:</label>
+  <input type="text" formControlName="Email" placeholder="Enter email">
+  <div *ngIf="formdata.Email.invalid && submit" class="alert alert-danger">
+    <div *ngIf="formdata.Email.errors.required || formdata.Email.errors.email">
+      Please Enter a valid Email.
+    </div>
+  </div>
+  <label>
+    PhoneNo:</label>
+  <span>
+    <input type="text" formControlName="startval" class="startval">
+    <input type="tel" formControlName="PhoneNo" placeholder="Enter phoneno.">
+  </span>
+    <div *ngIf="formdata.PhoneNo.invalid && submit" class="alert alert-danger">
+        <div *ngIf="formdata.PhoneNo.errors.minlength || formdata.PhoneNo.errors.maxlength ||formdata.PhoneNo.errors.pattern">
+          Please Enter a Valid Phone Number.
+        </div>
+      </div>
+
+
+
+  <div formGroupName="address">
+    <h3>Address</h3>
+
+    <label>
+      Street:
+      <input type="text" formControlName="street" placeholder="Enter street">
+    </label>
+
+    <label>
+      City:
+      <input type="text" formControlName="city" placeholder="Enter city">
+    </label>
+
+    <label>
+      State:
+      <input type="text" formControlName="state" placeholder="Enter state">
+    </label>
+
+    <label>
+      Zip Code:
+      <input type="text" formControlName="zip" placeholder="Enter zip">
+    </label>
+    <div *ngIf="formdata.address.controls.zip.invalid && submit" class="alert alert-danger">
+        <div *ngIf="formdata.address.controls.zip.errors.minlength || formdata.address.controls.zip.errors.minlength" >
+          Length should be 6.
+        </div>
+      </div>
+  </div>
+  <button type="submit">Submit</button>
+</form>
