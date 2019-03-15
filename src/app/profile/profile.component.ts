@@ -11,7 +11,7 @@ export class ProfileComponent{
   profileForm = new FormGroup({
     FirstName: new FormControl('',Validators.required),
     LastName: new FormControl('',Validators.required),
-    Email: new FormControl('', [Validators.email,Validators.required]),
+    Email: new FormControl('', [Validators.required,Validators.pattern(/^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/)]),
     startval: new FormControl('+91'),
     PhoneNo: new FormControl('',[Validators.minLength(10),Validators.maxLength(10),Validators.pattern('[0-9]+')]),
     address: new FormGroup({
